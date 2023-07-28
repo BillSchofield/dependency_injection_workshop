@@ -1,7 +1,5 @@
-import strategy.MeowStrategy;
-import strategy.MoveStrategy;
-import strategy.SlinkStrategy;
-import strategy.SpeakStrategy;
+import injected.Animal;
+import strategy.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,9 +12,13 @@ public class Main {
         inheritance.Animal inheritanceCat = new inheritance.Cat();
         inheritanceCat.live();
 
+        Animal injectedCat = createCat();
+        injectedCat.live();
+    }
+
+    private static Animal createCat() {
         SpeakStrategy speaker = new MeowStrategy();
         MoveStrategy mover = new SlinkStrategy();
-        injected.Animal injectedCat = new injected.Animal("cat", speaker, mover);
-        injectedCat.live();
+        return new Animal("cat", speaker, mover);
     }
 }
